@@ -1,0 +1,248 @@
+name: http-mcp
+version: 0.8.0
+description: Work with Hermes from ChatGPT and other MCP clients. Run agents, manage tasks and schedules, and change
+  settings with version history and rollback.
+author: local
+license: MIT
+kind: standalone
+platforms:
+- macos
+- linux
+config_schema:
+  writes:
+    type: bool
+    default: true
+    label: Allow changes
+    description: Allow agent runs and changes to tasks, profiles, schedules and settings. Turn off for read-only
+      access. Restart HTTP MCP after saving.
+  auth_enabled:
+    type: bool
+    default: true
+    label: Require an access token
+    description: Check the Bearer token on HTTP requests. Turn off to allow access without a token; the server still
+      listens only on the local address 127.0.0.1. Restart HTTP MCP after saving.
+  auth_token:
+    type: secret
+    env: HERMES_HTTP_MCP_TOKEN
+    label: Access token
+    description: 'Enter a token of 32–256 characters: A–Z, a–z, 0–9, _ or -. Hermes stores it in the profile secrets
+      without displaying its value. Restart HTTP MCP after saving and use the same Bearer token in your client.'
+  tool_hermes_info:
+    type: bool
+    default: true
+    label: Show Hermes information
+    description: Tool hermes_info. Hermes version and service status. Restart HTTP MCP after saving.
+  tool_hermes_capabilities:
+    type: bool
+    default: true
+    label: Show MCP capabilities
+    description: Tool hermes_capabilities. Available features and access boundaries. Restart HTTP MCP after saving.
+  tool_hermes_agents:
+    type: bool
+    default: true
+    label: List agents
+    description: Tool hermes_agents. Agents from Hermes profiles. Restart HTTP MCP after saving.
+  tool_hermes_agent:
+    type: bool
+    default: true
+    label: Show an agent
+    description: Tool hermes_agent. Agent details by profile name. Restart HTTP MCP after saving.
+  tool_hermes_profiles:
+    type: bool
+    default: true
+    label: List profiles
+    description: Tool hermes_profiles. Hermes profiles on disk. Restart HTTP MCP after saving.
+  tool_hermes_profile:
+    type: bool
+    default: true
+    label: Show a profile
+    description: Tool hermes_profile. Profile metadata without configuration contents. Restart HTTP MCP after saving.
+  tool_hermes_profile_create:
+    type: bool
+    default: true
+    label: Create profiles
+    description: Tool hermes_profile_create. Create a new Hermes profile. Requires permission to make changes. Restart
+      HTTP MCP after saving.
+  tool_hermes_assignees:
+    type: bool
+    default: true
+    label: List task assignees
+    description: Tool hermes_assignees. The native Kanban assignee registry, including devops. Restart HTTP MCP
+      after saving.
+  tool_hermes_workers:
+    type: bool
+    default: true
+    label: List worker runs
+    description: Tool hermes_workers. Kanban worker execution attempts. Restart HTTP MCP after saving.
+  tool_hermes_worker:
+    type: bool
+    default: true
+    label: Show a worker run
+    description: Tool hermes_worker. Kanban worker status by run identifier. Restart HTTP MCP after saving.
+  tool_hermes_sessions:
+    type: bool
+    default: true
+    label: List sessions
+    description: Tool hermes_sessions. Saved sessions without message contents. Restart HTTP MCP after saving.
+  tool_hermes_session:
+    type: bool
+    default: true
+    label: Show a session
+    description: Tool hermes_session. Saved session details without messages or the system prompt. Restart HTTP
+      MCP after saving.
+  tool_hermes_run:
+    type: bool
+    default: true
+    label: Run agent tasks
+    description: Tool hermes_run. Run a task with the selected agent. Requires permission to make changes. Restart
+      HTTP MCP after saving.
+  tool_hermes_status:
+    type: bool
+    default: true
+    label: Show agent task status
+    description: Tool hermes_status. Status of a task started by this MCP. Restart HTTP MCP after saving.
+  tool_hermes_result:
+    type: bool
+    default: true
+    label: Show agent task results
+    description: Tool hermes_result. Result, error and usage for a task started by this MCP. Restart HTTP MCP after
+      saving.
+  tool_hermes_continue:
+    type: bool
+    default: true
+    label: Continue agent tasks
+    description: Tool hermes_continue. Continue a completed task in its saved session. Requires permission to make
+      changes. Restart HTTP MCP after saving.
+  tool_hermes_cancel:
+    type: bool
+    default: true
+    label: Stop agent tasks
+    description: Tool hermes_cancel. Request interruption of a running agent. Requires permission to make changes.
+      Restart HTTP MCP after saving.
+  tool_hermes_kanban_boards:
+    type: bool
+    default: true
+    label: List Kanban boards
+    description: Tool hermes_kanban_boards. Kanban boards allowed by the runtime configuration. Restart HTTP MCP
+      after saving.
+  tool_hermes_kanban_get:
+    type: bool
+    default: true
+    label: Show Kanban board tasks
+    description: Tool hermes_kanban_get. Board tasks and statistics. Restart HTTP MCP after saving.
+  tool_hermes_kanban_task:
+    type: bool
+    default: true
+    label: Show a Kanban task
+    description: Tool hermes_kanban_task. Task card and execution attempts. Restart HTTP MCP after saving.
+  tool_hermes_kanban_create:
+    type: bool
+    default: true
+    label: Create Kanban tasks
+    description: Tool hermes_kanban_create. Create a card on a board. Requires permission to make changes. Restart
+      HTTP MCP after saving.
+  tool_hermes_kanban_update:
+    type: bool
+    default: true
+    label: Update Kanban tasks
+    description: Tool hermes_kanban_update. Update a card, its status and assignee. Requires permission to make
+      changes. Restart HTTP MCP after saving.
+  tool_hermes_cron:
+    type: bool
+    default: true
+    label: Show scheduled tasks
+    description: Tool hermes_cron. List scheduled Hermes tasks. Restart HTTP MCP after saving.
+  tool_hermes_cron_job:
+    type: bool
+    default: true
+    label: Show a scheduled task
+    description: Tool hermes_cron_job. Scheduled task status by identifier. Restart HTTP MCP after saving.
+  tool_hermes_cron_create:
+    type: bool
+    default: true
+    label: Create scheduled tasks
+    description: Tool hermes_cron_create. Create a scheduled task. Requires permission to make changes. Restart
+      HTTP MCP after saving.
+  tool_hermes_cron_set_paused:
+    type: bool
+    default: true
+    label: Pause and resume scheduled tasks
+    description: Tool hermes_cron_set_paused. Pause or resume a scheduled task. Requires permission to make changes.
+      Restart HTTP MCP after saving.
+  tool_hermes_workspaces:
+    type: bool
+    default: true
+    label: List workspaces
+    description: Tool hermes_workspaces. Registered projects and discovered repositories. Restart HTTP MCP after
+      saving.
+  tool_hermes_workspace:
+    type: bool
+    default: true
+    label: Show a workspace
+    description: Tool hermes_workspace. Details of a registered project. Restart HTTP MCP after saving.
+  tool_hermes_events:
+    type: bool
+    default: true
+    label: Show task and session events
+    description: Tool hermes_events. Saved Kanban and session events without message contents. Restart HTTP MCP
+      after saving.
+  tool_hermes_memory_status:
+    type: bool
+    default: true
+    label: Show memory status
+    description: Tool hermes_memory_status. Memory providers and their availability/status without memory contents.
+      Restart HTTP MCP after saving.
+  tool_hermes_settings_schema:
+    type: bool
+    default: true
+    label: Show settings editing rules
+    description: Tool hermes_settings_schema. Supported settings sources, edit formats and restrictions. Restart
+      HTTP MCP after saving.
+  tool_hermes_settings_get:
+    type: bool
+    default: true
+    label: Read settings
+    description: Tool hermes_settings_get. Configuration, environment variable names and settings files with secrets
+      masked. Restart HTTP MCP after saving.
+  tool_hermes_settings_update:
+    type: bool
+    default: true
+    label: Update selected settings
+    description: Tool hermes_settings_update. Update supported configuration fields with a revision check. Requires
+      permission to make changes. Restart HTTP MCP after saving.
+  tool_hermes_settings_apply:
+    type: bool
+    default: true
+    label: Apply a full settings snapshot
+    description: Tool hermes_settings_apply. Apply a complete settings snapshot with a saved version for rollback.
+      Requires permission to make changes. Restart HTTP MCP after saving.
+  tool_hermes_settings_versions:
+    type: bool
+    default: true
+    label: List settings versions
+    description: Tool hermes_settings_versions. Versions saved on disk, including identifiers and change details.
+      Restart HTTP MCP after saving.
+  tool_hermes_settings_restore:
+    type: bool
+    default: true
+    label: Restore a settings version
+    description: Tool hermes_settings_restore. Restore a saved version, preserving the current settings in history.
+      Requires permission to make changes. Restart HTTP MCP after saving.
+  tool_hermes_profile_delete:
+    type: bool
+    default: true
+    label: Delete inactive profiles
+    description: hermes_profile_delete. Delete inactive profiles. Allow agent runs and changes to tasks, profiles,
+      schedules and settings. Turn off for read-only access. Restart HTTP MCP after saving.
+  tool_hermes_cron_delete:
+    type: bool
+    default: true
+    label: Delete paused schedules
+    description: hermes_cron_delete. Delete paused schedules. Allow agent runs and changes to tasks, profiles, schedules
+      and settings. Turn off for read-only access. Restart HTTP MCP after saving.
+  tool_hermes_kanban_archive:
+    type: bool
+    default: true
+    label: Archive inactive Kanban cards
+    description: hermes_kanban_archive. Archive inactive Kanban cards. Allow agent runs and changes to tasks, profiles,
+      schedules and settings. Turn off for read-only access. Restart HTTP MCP after saving.

@@ -1,0 +1,173 @@
+{
+  "description": "Use Hermes no ChatGPT e em outros clientes MCP para executar agentes, gerir tarefas e agendamentos e alterar as configurações com histórico de versões e restauração.",
+  "fields": {
+    "writes": {
+      "label": "Permitir alterações",
+      "description": "Permitir a execução de agentes e alterações em tarefas, perfis, agendamentos e configurações. Desative para acesso apenas de leitura. Reinicie HTTP MCP após salvar."
+    },
+    "auth_enabled": {
+      "label": "Exigir um token de acesso",
+      "description": "Verificar o token Bearer nas solicitações HTTP. Desative para permitir acesso sem token; o servidor continua a escutar apenas no endereço local 127.0.0.1. Reinicie HTTP MCP após salvar."
+    },
+    "auth_token": {
+      "label": "Token de acesso",
+      "description": "Insira um token de 32–256 caracteres: A–Z, a–z, 0–9, _ ou -. Hermes armazena o token nos segredos do perfil sem mostrar o seu valor. Reinicie HTTP MCP após salvar e use o mesmo token Bearer no cliente."
+    },
+    "tool_hermes_info": {
+      "label": "Mostrar informações do Hermes",
+      "description": "Ferramenta hermes_info. Versão do Hermes e estado do serviço. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_capabilities": {
+      "label": "Mostrar funcionalidades MCP",
+      "description": "Ferramenta hermes_capabilities. Funcionalidades disponíveis e limites de acesso. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_agents": {
+      "label": "Listar agentes",
+      "description": "Ferramenta hermes_agents. Agentes dos perfis Hermes. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_agent": {
+      "label": "Mostrar um agente",
+      "description": "Ferramenta hermes_agent. Detalhes do agente pelo nome do perfil. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_profiles": {
+      "label": "Listar perfis",
+      "description": "Ferramenta hermes_profiles. Perfis Hermes armazenados em disco. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_profile": {
+      "label": "Mostrar um perfil",
+      "description": "Ferramenta hermes_profile. Metadados do perfil sem o conteúdo da configuração. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_profile_create": {
+      "label": "Criar perfis",
+      "description": "Ferramenta hermes_profile_create. Criar um novo perfil Hermes. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_assignees": {
+      "label": "Listar responsáveis pelas tarefas",
+      "description": "Ferramenta hermes_assignees. Registro nativo de responsáveis pelas tarefas Kanban, incluindo devops. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_workers": {
+      "label": "Listar execuções de processos",
+      "description": "Ferramenta hermes_workers. Tentativas de execução dos processos de trabalho Kanban. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_worker": {
+      "label": "Mostrar uma execução de processo",
+      "description": "Ferramenta hermes_worker. Estado de um processo de trabalho Kanban pelo identificador da execução. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_sessions": {
+      "label": "Listar sessões",
+      "description": "Ferramenta hermes_sessions. Sessões salvas sem o conteúdo das mensagens. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_session": {
+      "label": "Mostrar uma sessão",
+      "description": "Ferramenta hermes_session. Detalhes de uma sessão salva sem as mensagens ou a instrução de sistema. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_run": {
+      "label": "Executar tarefas de agentes",
+      "description": "Ferramenta hermes_run. Executar uma tarefa com o agente selecionado. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_status": {
+      "label": "Mostrar o estado de uma tarefa de agente",
+      "description": "Ferramenta hermes_status. Estado de uma tarefa iniciada por este MCP. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_result": {
+      "label": "Mostrar resultados de uma tarefa de agente",
+      "description": "Ferramenta hermes_result. Resultado, erro e uso de recursos de uma tarefa iniciada por este MCP. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_continue": {
+      "label": "Continuar tarefas de agentes",
+      "description": "Ferramenta hermes_continue. Continuar uma tarefa concluída na sua sessão salva. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_cancel": {
+      "label": "Interromper tarefas de agentes",
+      "description": "Ferramenta hermes_cancel. Solicitar a interrupção de um agente em execução. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_kanban_boards": {
+      "label": "Listar quadros Kanban",
+      "description": "Ferramenta hermes_kanban_boards. Quadros Kanban permitidos pela configuração de execução. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_kanban_get": {
+      "label": "Mostrar tarefas de um quadro Kanban",
+      "description": "Ferramenta hermes_kanban_get. Tarefas e estatísticas do quadro. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_kanban_task": {
+      "label": "Mostrar uma tarefa Kanban",
+      "description": "Ferramenta hermes_kanban_task. Cartão da tarefa e tentativas de execução. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_kanban_create": {
+      "label": "Criar tarefas Kanban",
+      "description": "Ferramenta hermes_kanban_create. Criar um cartão num quadro. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_kanban_update": {
+      "label": "Atualizar tarefas Kanban",
+      "description": "Ferramenta hermes_kanban_update. Atualizar um cartão, o seu estado e o responsável atribuído. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_cron": {
+      "label": "Mostrar tarefas agendadas",
+      "description": "Ferramenta hermes_cron. Listar as tarefas agendadas do Hermes. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_cron_job": {
+      "label": "Mostrar uma tarefa agendada",
+      "description": "Ferramenta hermes_cron_job. Estado de uma tarefa agendada pelo identificador. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_cron_create": {
+      "label": "Criar tarefas agendadas",
+      "description": "Ferramenta hermes_cron_create. Criar uma tarefa agendada. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_cron_set_paused": {
+      "label": "Pausar e retomar tarefas agendadas",
+      "description": "Ferramenta hermes_cron_set_paused. Pausar ou retomar uma tarefa agendada. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_workspaces": {
+      "label": "Listar espaços de trabalho",
+      "description": "Ferramenta hermes_workspaces. Projetos registrados e repositórios detectados. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_workspace": {
+      "label": "Mostrar um espaço de trabalho",
+      "description": "Ferramenta hermes_workspace. Detalhes de um projeto registrado. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_events": {
+      "label": "Mostrar eventos de tarefas e sessões",
+      "description": "Ferramenta hermes_events. Eventos Kanban e de sessões salvos sem o conteúdo das mensagens. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_memory_status": {
+      "label": "Mostrar o estado da memória",
+      "description": "Ferramenta hermes_memory_status. Provedores de memória e a sua disponibilidade e estado, sem o conteúdo da memória. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_settings_schema": {
+      "label": "Mostrar regras de edição das configurações",
+      "description": "Ferramenta hermes_settings_schema. Origens de configurações, formatos de edição e restrições aceitos. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_settings_get": {
+      "label": "Ler configurações",
+      "description": "Ferramenta hermes_settings_get. Configuração, nomes de variáveis de ambiente e arquivos de configurações com os segredos ocultos. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_settings_update": {
+      "label": "Atualizar configurações selecionadas",
+      "description": "Ferramenta hermes_settings_update. Atualizar os campos de configuração suportados com uma verificação da revisão. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_settings_apply": {
+      "label": "Aplicar um instantâneo completo das configurações",
+      "description": "Ferramenta hermes_settings_apply. Aplicar um instantâneo completo das configurações e salvar uma versão para restauração. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_settings_versions": {
+      "label": "Listar versões das configurações",
+      "description": "Ferramenta hermes_settings_versions. Versões salvas em disco, com identificadores e detalhes das alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_settings_restore": {
+      "label": "Restaurar uma versão das configurações",
+      "description": "Ferramenta hermes_settings_restore. Restaurar uma versão salva, preservando as configurações atuais no histórico. Requer permissão para fazer alterações. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_profile_delete": {
+      "label": "Excluir perfis inativos",
+      "description": "hermes_profile_delete. Excluir perfis inativos. Permitir a execução de agentes e alterações em tarefas, perfis, agendamentos e configurações. Desative para acesso apenas de leitura. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_cron_delete": {
+      "label": "Excluir tarefas agendadas pausadas",
+      "description": "hermes_cron_delete. Excluir tarefas agendadas pausadas. Permitir a execução de agentes e alterações em tarefas, perfis, agendamentos e configurações. Desative para acesso apenas de leitura. Reinicie HTTP MCP após salvar."
+    },
+    "tool_hermes_kanban_archive": {
+      "label": "Arquivar cartões Kanban inativos",
+      "description": "hermes_kanban_archive. Arquivar cartões Kanban inativos. Permitir a execução de agentes e alterações em tarefas, perfis, agendamentos e configurações. Desative para acesso apenas de leitura. Reinicie HTTP MCP após salvar."
+    }
+  }
+}

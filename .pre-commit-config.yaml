@@ -1,0 +1,20 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.0
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
+  - repo: local
+    hooks:
+      - id: strict-types
+        name: strict mypy
+        entry: uv run --no-sync mypy
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: security
+        name: Bandit
+        entry: uv run --no-sync bandit -q -c pyproject.toml -r hermes_bridge scripts
+        language: system
+        types: [python]
+        pass_filenames: false

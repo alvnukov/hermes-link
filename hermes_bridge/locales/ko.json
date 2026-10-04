@@ -1,0 +1,173 @@
+{
+  "description": "ChatGPT와 다른 MCP 클라이언트에서 Hermes를 사용하세요. 에이전트를 실행하고, 작업과 예약을 관리하고, 설정을 변경할 수 있으며 버전 기록과 롤백을 지원합니다.",
+  "fields": {
+    "writes": {
+      "label": "변경 허용",
+      "description": "에이전트 실행과 작업, 프로필, 예약, 설정 변경을 허용합니다. 읽기 전용으로 접근하려면 끄세요. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "auth_enabled": {
+      "label": "액세스 토큰 필수",
+      "description": "HTTP 요청의 Bearer 토큰을 확인합니다. 끄면 토큰 없이 접근할 수 있습니다. 서버는 계속 로컬 주소 127.0.0.1에서만 요청을 수신합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "auth_token": {
+      "label": "액세스 토큰",
+      "description": "A–Z, a–z, 0–9, _ 또는 -로 구성된 32–256자의 토큰을 입력하세요. Hermes는 토큰을 프로필의 비밀 정보 저장소에 저장하며 값을 표시하지 않습니다. 저장 후 HTTP MCP를 다시 시작하고 클라이언트에서 동일한 Bearer 토큰을 사용하세요."
+    },
+    "tool_hermes_info": {
+      "label": "Hermes 정보 보기",
+      "description": "도구 hermes_info. Hermes 버전과 서비스 상태. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_capabilities": {
+      "label": "MCP 기능 보기",
+      "description": "도구 hermes_capabilities. 사용 가능한 기능과 접근 범위. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_agents": {
+      "label": "에이전트 목록 보기",
+      "description": "도구 hermes_agents. Hermes 프로필의 에이전트. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_agent": {
+      "label": "에이전트 보기",
+      "description": "도구 hermes_agent. 프로필 이름으로 조회한 에이전트 상세 정보. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_profiles": {
+      "label": "프로필 목록 보기",
+      "description": "도구 hermes_profiles. 디스크에 저장된 Hermes 프로필. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_profile": {
+      "label": "프로필 보기",
+      "description": "도구 hermes_profile. 설정 내용을 제외한 프로필 메타데이터. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_profile_create": {
+      "label": "프로필 만들기",
+      "description": "도구 hermes_profile_create. 새 Hermes 프로필을 만듭니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_assignees": {
+      "label": "작업 담당자 목록 보기",
+      "description": "도구 hermes_assignees. devops를 포함한 Kanban 기본 작업 담당자 레지스트리. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_workers": {
+      "label": "워커 실행 목록 보기",
+      "description": "도구 hermes_workers. Kanban 워커의 실행 시도. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_worker": {
+      "label": "워커 실행 보기",
+      "description": "도구 hermes_worker. 실행 식별자로 조회한 Kanban 워커 상태. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_sessions": {
+      "label": "세션 목록 보기",
+      "description": "도구 hermes_sessions. 메시지 내용을 제외한 저장된 세션. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_session": {
+      "label": "세션 보기",
+      "description": "도구 hermes_session. 메시지와 시스템 프롬프트를 제외한 저장된 세션의 상세 정보. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_run": {
+      "label": "에이전트 작업 실행",
+      "description": "도구 hermes_run. 선택한 에이전트로 작업을 실행합니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_status": {
+      "label": "에이전트 작업 상태 보기",
+      "description": "도구 hermes_status. 이 MCP에서 시작한 작업의 상태. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_result": {
+      "label": "에이전트 작업 결과 보기",
+      "description": "도구 hermes_result. 이 MCP에서 시작한 작업의 결과, 오류, 사용량. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_continue": {
+      "label": "에이전트 작업 이어서 실행",
+      "description": "도구 hermes_continue. 완료된 작업을 저장된 세션에서 이어서 실행합니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_cancel": {
+      "label": "에이전트 작업 중지",
+      "description": "도구 hermes_cancel. 실행 중인 에이전트에 중단을 요청합니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_kanban_boards": {
+      "label": "Kanban 보드 목록 보기",
+      "description": "도구 hermes_kanban_boards. 런타임 설정에서 허용된 Kanban 보드. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_kanban_get": {
+      "label": "Kanban 보드 작업 보기",
+      "description": "도구 hermes_kanban_get. 보드의 작업과 통계. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_kanban_task": {
+      "label": "Kanban 작업 보기",
+      "description": "도구 hermes_kanban_task. 작업 카드와 실행 시도. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_kanban_create": {
+      "label": "Kanban 작업 만들기",
+      "description": "도구 hermes_kanban_create. 보드에 카드를 만듭니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_kanban_update": {
+      "label": "Kanban 작업 업데이트",
+      "description": "도구 hermes_kanban_update. 카드와 상태, 담당자를 업데이트합니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_cron": {
+      "label": "예약 작업 목록 보기",
+      "description": "도구 hermes_cron. 예약된 Hermes 작업을 나열합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_cron_job": {
+      "label": "예약 작업 보기",
+      "description": "도구 hermes_cron_job. 식별자로 조회한 예약 작업의 상태. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_cron_create": {
+      "label": "예약 작업 만들기",
+      "description": "도구 hermes_cron_create. 예약 작업을 만듭니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_cron_set_paused": {
+      "label": "예약 작업 일시 중지 및 재개",
+      "description": "도구 hermes_cron_set_paused. 예약 작업을 일시 중지하거나 재개합니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_workspaces": {
+      "label": "작업 공간 목록 보기",
+      "description": "도구 hermes_workspaces. 등록된 프로젝트와 발견된 저장소. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_workspace": {
+      "label": "작업 공간 보기",
+      "description": "도구 hermes_workspace. 등록된 프로젝트의 상세 정보. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_events": {
+      "label": "작업 및 세션 이벤트 보기",
+      "description": "도구 hermes_events. 메시지 내용을 제외한 저장된 Kanban 이벤트와 세션 이벤트. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_memory_status": {
+      "label": "메모리 상태 보기",
+      "description": "도구 hermes_memory_status. 메모리 제공자와 각 제공자의 가용 여부 및 상태. 메모리 내용은 제외합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_settings_schema": {
+      "label": "설정 편집 규칙 보기",
+      "description": "도구 hermes_settings_schema. 지원하는 설정 소스, 편집 형식, 제한 사항. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_settings_get": {
+      "label": "설정 읽기",
+      "description": "도구 hermes_settings_get. 비밀 정보를 가린 구성, 환경 변수 이름, 설정 파일. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_settings_update": {
+      "label": "선택한 설정 업데이트",
+      "description": "도구 hermes_settings_update. 리비전 확인을 거쳐 지원되는 구성 필드를 업데이트합니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_settings_apply": {
+      "label": "전체 설정 스냅샷 적용",
+      "description": "도구 hermes_settings_apply. 전체 설정 스냅샷을 적용하고 롤백할 수 있도록 버전을 저장합니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_settings_versions": {
+      "label": "설정 버전 목록 보기",
+      "description": "도구 hermes_settings_versions. 디스크에 저장된 버전과 각 버전의 식별자 및 변경 상세 정보. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_settings_restore": {
+      "label": "설정 버전 복원",
+      "description": "도구 hermes_settings_restore. 현재 설정을 기록에 보존하면서 저장된 버전을 복원합니다. 변경 권한이 필요합니다. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_profile_delete": {
+      "label": "실행 중이 아닌 프로필 삭제",
+      "description": "hermes_profile_delete. 실행 중이 아닌 프로필 삭제. 에이전트 실행과 작업, 프로필, 예약, 설정 변경을 허용합니다. 읽기 전용으로 접근하려면 끄세요. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_cron_delete": {
+      "label": "일시 중지된 예약 작업 삭제",
+      "description": "hermes_cron_delete. 일시 중지된 예약 작업 삭제. 에이전트 실행과 작업, 프로필, 예약, 설정 변경을 허용합니다. 읽기 전용으로 접근하려면 끄세요. 저장 후 HTTP MCP를 다시 시작하세요."
+    },
+    "tool_hermes_kanban_archive": {
+      "label": "실행 중이 아닌 Kanban 카드 보관",
+      "description": "hermes_kanban_archive. 실행 중이 아닌 Kanban 카드 보관. 에이전트 실행과 작업, 프로필, 예약, 설정 변경을 허용합니다. 읽기 전용으로 접근하려면 끄세요. 저장 후 HTTP MCP를 다시 시작하세요."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <title>Hermes Link symbol</title>
+  <g stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M27 19h-5a10 10 0 0 0-10 10v6a10 10 0 0 0 10 10h5"/>
+    <path d="M37 19h5a10 10 0 0 1 10 10v6a10 10 0 0 1-10 10h-5"/>
+    <path d="M24 32h16"/>
+  </g>
+</svg>

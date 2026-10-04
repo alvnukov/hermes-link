@@ -1,0 +1,173 @@
+{
+  "description": "Nutzen Sie Hermes in ChatGPT und anderen MCP-Clients. Führen Sie Agenten aus, verwalten Sie Aufgaben und Zeitpläne und ändern Sie Einstellungen mit Versionsverlauf und Wiederherstellung.",
+  "fields": {
+    "writes": {
+      "label": "Änderungen erlauben",
+      "description": "Ausführung von Agenten und Änderungen an Aufgaben, Profilen, Zeitplänen und Einstellungen erlauben. Für reinen Lesezugriff deaktivieren. HTTP MCP nach dem Speichern neu starten."
+    },
+    "auth_enabled": {
+      "label": "Zugriffstoken verlangen",
+      "description": "Bearer-Token bei HTTP-Anfragen prüfen. Deaktivieren, um Zugriff ohne Token zu erlauben; der Server lauscht weiterhin nur auf der lokalen Adresse 127.0.0.1. HTTP MCP nach dem Speichern neu starten."
+    },
+    "auth_token": {
+      "label": "Zugriffstoken",
+      "description": "Ein Token mit 32–256 Zeichen eingeben: A–Z, a–z, 0–9, _ oder -. Hermes speichert es in den geheimen Profildaten, ohne seinen Wert anzuzeigen. HTTP MCP nach dem Speichern neu starten und denselben Bearer-Token im Client verwenden."
+    },
+    "tool_hermes_info": {
+      "label": "Hermes-Informationen anzeigen",
+      "description": "Werkzeug hermes_info. Hermes-Version und Dienststatus. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_capabilities": {
+      "label": "MCP-Funktionen anzeigen",
+      "description": "Werkzeug hermes_capabilities. Verfügbare Funktionen und Zugriffsgrenzen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_agents": {
+      "label": "Agenten auflisten",
+      "description": "Werkzeug hermes_agents. Agenten aus Hermes-Profilen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_agent": {
+      "label": "Agent anzeigen",
+      "description": "Werkzeug hermes_agent. Agentendetails anhand des Profilnamens. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_profiles": {
+      "label": "Profile auflisten",
+      "description": "Werkzeug hermes_profiles. Auf dem Datenträger gespeicherte Hermes-Profile. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_profile": {
+      "label": "Profil anzeigen",
+      "description": "Werkzeug hermes_profile. Profilmetadaten ohne Konfigurationsinhalte. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_profile_create": {
+      "label": "Profile erstellen",
+      "description": "Werkzeug hermes_profile_create. Ein neues Hermes-Profil erstellen. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_assignees": {
+      "label": "Aufgabenverantwortliche auflisten",
+      "description": "Werkzeug hermes_assignees. Das native Kanban-Verzeichnis der Aufgabenverantwortlichen, einschließlich devops. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_workers": {
+      "label": "Prozessausführungen auflisten",
+      "description": "Werkzeug hermes_workers. Ausführungsversuche von Kanban-Arbeitsprozessen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_worker": {
+      "label": "Prozessausführung anzeigen",
+      "description": "Werkzeug hermes_worker. Status eines Kanban-Arbeitsprozesses anhand der Ausführungskennung. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_sessions": {
+      "label": "Sitzungen auflisten",
+      "description": "Werkzeug hermes_sessions. Gespeicherte Sitzungen ohne Nachrichteninhalte. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_session": {
+      "label": "Sitzung anzeigen",
+      "description": "Werkzeug hermes_session. Details einer gespeicherten Sitzung ohne Nachrichten oder Systemanweisung. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_run": {
+      "label": "Agentenaufgaben ausführen",
+      "description": "Werkzeug hermes_run. Eine Aufgabe mit dem ausgewählten Agenten ausführen. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_status": {
+      "label": "Status einer Agentenaufgabe anzeigen",
+      "description": "Werkzeug hermes_status. Status einer von diesem MCP gestarteten Aufgabe. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_result": {
+      "label": "Ergebnisse einer Agentenaufgabe anzeigen",
+      "description": "Werkzeug hermes_result. Ergebnis, Fehler und Ressourcennutzung einer von diesem MCP gestarteten Aufgabe. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_continue": {
+      "label": "Agentenaufgaben fortsetzen",
+      "description": "Werkzeug hermes_continue. Eine abgeschlossene Aufgabe in ihrer gespeicherten Sitzung fortsetzen. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_cancel": {
+      "label": "Agentenaufgaben stoppen",
+      "description": "Werkzeug hermes_cancel. Unterbrechung eines laufenden Agenten anfordern. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_kanban_boards": {
+      "label": "Kanban-Boards auflisten",
+      "description": "Werkzeug hermes_kanban_boards. Durch die Laufzeitkonfiguration zugelassene Kanban-Boards. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_kanban_get": {
+      "label": "Aufgaben eines Kanban-Boards anzeigen",
+      "description": "Werkzeug hermes_kanban_get. Aufgaben und Statistiken des Boards. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_kanban_task": {
+      "label": "Kanban-Aufgabe anzeigen",
+      "description": "Werkzeug hermes_kanban_task. Aufgabenkarte und Ausführungsversuche. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_kanban_create": {
+      "label": "Kanban-Aufgaben erstellen",
+      "description": "Werkzeug hermes_kanban_create. Eine Karte auf einem Board erstellen. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_kanban_update": {
+      "label": "Kanban-Aufgaben aktualisieren",
+      "description": "Werkzeug hermes_kanban_update. Eine Karte, ihren Status und den zugewiesenen Verantwortlichen aktualisieren. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_cron": {
+      "label": "Geplante Aufgaben anzeigen",
+      "description": "Werkzeug hermes_cron. Geplante Hermes-Aufgaben auflisten. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_cron_job": {
+      "label": "Geplante Aufgabe anzeigen",
+      "description": "Werkzeug hermes_cron_job. Status einer geplanten Aufgabe anhand der Kennung. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_cron_create": {
+      "label": "Geplante Aufgaben erstellen",
+      "description": "Werkzeug hermes_cron_create. Eine geplante Aufgabe erstellen. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_cron_set_paused": {
+      "label": "Geplante Aufgaben pausieren und fortsetzen",
+      "description": "Werkzeug hermes_cron_set_paused. Eine geplante Aufgabe pausieren oder fortsetzen. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_workspaces": {
+      "label": "Arbeitsbereiche auflisten",
+      "description": "Werkzeug hermes_workspaces. Registrierte Projekte und erkannte Repositorys. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_workspace": {
+      "label": "Arbeitsbereich anzeigen",
+      "description": "Werkzeug hermes_workspace. Details eines registrierten Projekts. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_events": {
+      "label": "Aufgaben- und Sitzungsereignisse anzeigen",
+      "description": "Werkzeug hermes_events. Gespeicherte Kanban- und Sitzungsereignisse ohne Nachrichteninhalte. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_memory_status": {
+      "label": "Gedächtnisstatus anzeigen",
+      "description": "Werkzeug hermes_memory_status. Gedächtnisanbieter und Angaben zu ihrer Verfügbarkeit und ihrem Status ohne Gedächtnisinhalte. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_settings_schema": {
+      "label": "Regeln zur Bearbeitung von Einstellungen anzeigen",
+      "description": "Werkzeug hermes_settings_schema. Unterstützte Einstellungsquellen, Bearbeitungsformate und Einschränkungen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_settings_get": {
+      "label": "Einstellungen lesen",
+      "description": "Werkzeug hermes_settings_get. Konfiguration, Namen von Umgebungsvariablen und Einstellungsdateien mit maskierten Geheimnissen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_settings_update": {
+      "label": "Ausgewählte Einstellungen aktualisieren",
+      "description": "Werkzeug hermes_settings_update. Unterstützte Konfigurationsfelder mit einer Revisionsprüfung aktualisieren. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_settings_apply": {
+      "label": "Vollständigen Einstellungsstand anwenden",
+      "description": "Werkzeug hermes_settings_apply. Einen vollständigen Einstellungsstand anwenden und eine Version zur Wiederherstellung speichern. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_settings_versions": {
+      "label": "Einstellungsversionen auflisten",
+      "description": "Werkzeug hermes_settings_versions. Auf dem Datenträger gespeicherte Versionen mit Kennungen und Änderungsdetails. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_settings_restore": {
+      "label": "Einstellungsversion wiederherstellen",
+      "description": "Werkzeug hermes_settings_restore. Eine gespeicherte Version wiederherstellen und die aktuellen Einstellungen im Verlauf bewahren. Erfordert die Berechtigung, Änderungen vorzunehmen. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_profile_delete": {
+      "label": "Inaktive Profile löschen",
+      "description": "hermes_profile_delete. Inaktive Profile löschen. Ausführung von Agenten und Änderungen an Aufgaben, Profilen, Zeitplänen und Einstellungen erlauben. Für reinen Lesezugriff deaktivieren. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_cron_delete": {
+      "label": "Pausierte Zeitpläne löschen",
+      "description": "hermes_cron_delete. Pausierte Zeitpläne löschen. Ausführung von Agenten und Änderungen an Aufgaben, Profilen, Zeitplänen und Einstellungen erlauben. Für reinen Lesezugriff deaktivieren. HTTP MCP nach dem Speichern neu starten."
+    },
+    "tool_hermes_kanban_archive": {
+      "label": "Inaktive Kanban-Karten archivieren",
+      "description": "hermes_kanban_archive. Inaktive Kanban-Karten archivieren. Ausführung von Agenten und Änderungen an Aufgaben, Profilen, Zeitplänen und Einstellungen erlauben. Für reinen Lesezugriff deaktivieren. HTTP MCP nach dem Speichern neu starten."
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "description": "ChatGPT ve diğer MCP istemcilerinden Hermes ile çalışın. Ajanları çalıştırın, görevleri ve zamanlamaları yönetin, sürüm geçmişi ve geri alma desteğiyle ayarları değiştirin.",
+  "fields": {
+    "writes": {
+      "label": "Değişikliklere izin ver",
+      "description": "Ajan çalıştırmaya ve görevlerde, profillerde, zamanlamalarda ve ayarlarda değişiklik yapmaya izin verin. Salt okunur erişim için kapatın. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "auth_enabled": {
+      "label": "Erişim belirtecini zorunlu kıl",
+      "description": "HTTP isteklerindeki Bearer belirtecini denetleyin. Belirteçsiz erişime izin vermek için kapatın; sunucu yine yalnızca 127.0.0.1 yerel adresini dinler. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "auth_token": {
+      "label": "Erişim belirteci",
+      "description": "A–Z, a–z, 0–9, _ veya - karakterlerinden oluşan 32–256 karakterlik bir belirteç girin. Hermes, belirteci değerini göstermeden profilin gizli bilgi deposunda saklar. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın ve istemcinizde aynı Bearer belirtecini kullanın."
+    },
+    "tool_hermes_info": {
+      "label": "Hermes bilgilerini göster",
+      "description": "Araç hermes_info. Hermes sürümü ve hizmet durumu. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_capabilities": {
+      "label": "MCP yeteneklerini göster",
+      "description": "Araç hermes_capabilities. Kullanılabilir özellikler ve erişim sınırları. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_agents": {
+      "label": "Ajanları listele",
+      "description": "Araç hermes_agents. Hermes profillerindeki ajanlar. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_agent": {
+      "label": "Ajanı göster",
+      "description": "Araç hermes_agent. Profil adına göre ajan ayrıntıları. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_profiles": {
+      "label": "Profilleri listele",
+      "description": "Araç hermes_profiles. Diskteki Hermes profilleri. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_profile": {
+      "label": "Profili göster",
+      "description": "Araç hermes_profile. Yapılandırma içeriği olmadan profil meta verileri. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_profile_create": {
+      "label": "Profil oluştur",
+      "description": "Araç hermes_profile_create. Yeni bir Hermes profili oluşturun. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_assignees": {
+      "label": "Görev sorumlularını listele",
+      "description": "Araç hermes_assignees. devops dahil, Kanban yerleşik görev sorumlusu kayıt defteri. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_workers": {
+      "label": "İşleyici çalıştırmalarını listele",
+      "description": "Araç hermes_workers. Kanban işleyicilerinin yürütme denemeleri. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_worker": {
+      "label": "İşleyici çalıştırmasını göster",
+      "description": "Araç hermes_worker. Çalıştırma kimliğine göre Kanban işleyicisinin durumu. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_sessions": {
+      "label": "Oturumları listele",
+      "description": "Araç hermes_sessions. Mesaj içerikleri olmadan kayıtlı oturumlar. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_session": {
+      "label": "Oturumu göster",
+      "description": "Araç hermes_session. Mesajlar veya sistem istemi olmadan kayıtlı oturum ayrıntıları. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_run": {
+      "label": "Ajan görevlerini çalıştır",
+      "description": "Araç hermes_run. Seçilen ajanla bir görev çalıştırın. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_status": {
+      "label": "Ajan görevinin durumunu göster",
+      "description": "Araç hermes_status. Bu MCP tarafından başlatılan bir görevin durumu. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_result": {
+      "label": "Ajan görevinin sonuçlarını göster",
+      "description": "Araç hermes_result. Bu MCP tarafından başlatılan bir görevin sonucu, hatası ve kullanımı. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_continue": {
+      "label": "Ajan görevlerine devam et",
+      "description": "Araç hermes_continue. Tamamlanan bir göreve kayıtlı oturumunda devam edin. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_cancel": {
+      "label": "Ajan görevlerini durdur",
+      "description": "Araç hermes_cancel. Çalışan bir ajanı durdurma isteği gönderin. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_kanban_boards": {
+      "label": "Kanban panolarını listele",
+      "description": "Araç hermes_kanban_boards. Çalışma zamanı yapılandırmasının izin verdiği Kanban panoları. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_kanban_get": {
+      "label": "Kanban panosunun görevlerini göster",
+      "description": "Araç hermes_kanban_get. Pano görevleri ve istatistikleri. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_kanban_task": {
+      "label": "Kanban görevini göster",
+      "description": "Araç hermes_kanban_task. Görev kartı ve yürütme denemeleri. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_kanban_create": {
+      "label": "Kanban görevleri oluştur",
+      "description": "Araç hermes_kanban_create. Bir panoda kart oluşturun. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_kanban_update": {
+      "label": "Kanban görevlerini güncelle",
+      "description": "Araç hermes_kanban_update. Kartı, durumunu ve sorumlusunu güncelleyin. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_cron": {
+      "label": "Zamanlanmış görevleri göster",
+      "description": "Araç hermes_cron. Zamanlanmış Hermes görevlerini listeleyin. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_cron_job": {
+      "label": "Zamanlanmış görevi göster",
+      "description": "Araç hermes_cron_job. Kimliğe göre zamanlanmış görevin durumu. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_cron_create": {
+      "label": "Zamanlanmış görev oluştur",
+      "description": "Araç hermes_cron_create. Zamanlanmış bir görev oluşturun. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_cron_set_paused": {
+      "label": "Zamanlanmış görevleri duraklat ve sürdür",
+      "description": "Araç hermes_cron_set_paused. Zamanlanmış bir görevi duraklatın veya sürdürün. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_workspaces": {
+      "label": "Çalışma alanlarını listele",
+      "description": "Araç hermes_workspaces. Kayıtlı projeler ve bulunan depolar. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_workspace": {
+      "label": "Çalışma alanını göster",
+      "description": "Araç hermes_workspace. Kayıtlı bir projenin ayrıntıları. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_events": {
+      "label": "Görev ve oturum olaylarını göster",
+      "description": "Araç hermes_events. Mesaj içerikleri olmadan kayıtlı Kanban ve oturum olayları. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_memory_status": {
+      "label": "Bellek durumunu göster",
+      "description": "Araç hermes_memory_status. Bellek içeriği olmadan bellek sağlayıcıları ve kullanılabilirlik/durum bilgileri. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_settings_schema": {
+      "label": "Ayar düzenleme kurallarını göster",
+      "description": "Araç hermes_settings_schema. Desteklenen ayar kaynakları, düzenleme biçimleri ve kısıtlamalar. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_settings_get": {
+      "label": "Ayarları oku",
+      "description": "Araç hermes_settings_get. Gizli bilgiler maskelenmiş olarak yapılandırma, ortam değişkeni adları ve ayar dosyaları. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_settings_update": {
+      "label": "Seçilen ayarları güncelle",
+      "description": "Araç hermes_settings_update. Revizyon denetimiyle desteklenen yapılandırma alanlarını güncelleyin. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_settings_apply": {
+      "label": "Tam ayar anlık görüntüsünü uygula",
+      "description": "Araç hermes_settings_apply. Geri almak için bir sürüm kaydederek tam ayar anlık görüntüsünü uygulayın. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_settings_versions": {
+      "label": "Ayar sürümlerini listele",
+      "description": "Araç hermes_settings_versions. Kimlikleri ve değişiklik ayrıntılarıyla birlikte diske kaydedilen sürümler. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_settings_restore": {
+      "label": "Ayar sürümünü geri yükle",
+      "description": "Araç hermes_settings_restore. Geçerli ayarları geçmişte saklayarak kayıtlı bir sürümü geri yükleyin. Değişiklik yapma izni gerekir. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_profile_delete": {
+      "label": "Etkin olmayan profilleri sil",
+      "description": "hermes_profile_delete. Etkin olmayan profilleri sil. Ajan çalıştırmaya ve görevlerde, profillerde, zamanlamalarda ve ayarlarda değişiklik yapmaya izin verin. Salt okunur erişim için kapatın. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_cron_delete": {
+      "label": "Duraklatılmış zamanlanmış görevleri sil",
+      "description": "hermes_cron_delete. Duraklatılmış zamanlanmış görevleri sil. Ajan çalıştırmaya ve görevlerde, profillerde, zamanlamalarda ve ayarlarda değişiklik yapmaya izin verin. Salt okunur erişim için kapatın. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    },
+    "tool_hermes_kanban_archive": {
+      "label": "Etkin olmayan Kanban kartlarını arşivle",
+      "description": "hermes_kanban_archive. Etkin olmayan Kanban kartlarını arşivle. Ajan çalıştırmaya ve görevlerde, profillerde, zamanlamalarda ve ayarlarda değişiklik yapmaya izin verin. Salt okunur erişim için kapatın. Kaydettikten sonra HTTP MCP sunucusunu yeniden başlatın."
+    }
+  }
+}

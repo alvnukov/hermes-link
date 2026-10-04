@@ -1,0 +1,173 @@
+{
+  "description": "ChatGPT やその他の MCP クライアントから Hermes を利用できます。エージェントの実行、タスクとスケジュールの管理、設定の変更が可能で、バージョン履歴とロールバックに対応しています。",
+  "fields": {
+    "writes": {
+      "label": "変更を許可",
+      "description": "エージェントの実行と、タスク、プロファイル、スケジュール、設定の変更を許可します。オフにすると読み取り専用になります。保存後に HTTP MCP を再起動してください。"
+    },
+    "auth_enabled": {
+      "label": "アクセストークンを必須にする",
+      "description": "HTTP リクエストの Bearer トークンを検証します。オフにするとトークンなしでアクセスできます。サーバーは引き続きローカルアドレス 127.0.0.1 のみで待ち受けます。保存後に HTTP MCP を再起動してください。"
+    },
+    "auth_token": {
+      "label": "アクセストークン",
+      "description": "A–Z、a–z、0–9、_ または - を使った 32–256 文字のトークンを入力してください。Hermes はトークンをプロファイルのシークレットに保存し、値は表示しません。保存後に HTTP MCP を再起動し、クライアントで同じ Bearer トークンを使用してください。"
+    },
+    "tool_hermes_info": {
+      "label": "Hermes 情報を表示",
+      "description": "ツール hermes_info。Hermes のバージョンとサービスの状態。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_capabilities": {
+      "label": "MCP の機能を表示",
+      "description": "ツール hermes_capabilities。利用できる機能とアクセス範囲。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_agents": {
+      "label": "エージェント一覧を表示",
+      "description": "ツール hermes_agents。Hermes プロファイルのエージェント。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_agent": {
+      "label": "エージェントを表示",
+      "description": "ツール hermes_agent。プロファイル名で指定したエージェントの詳細。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_profiles": {
+      "label": "プロファイル一覧を表示",
+      "description": "ツール hermes_profiles。ディスク上の Hermes プロファイル。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_profile": {
+      "label": "プロファイルを表示",
+      "description": "ツール hermes_profile。設定内容を含まないプロファイルのメタデータ。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_profile_create": {
+      "label": "プロファイルを作成",
+      "description": "ツール hermes_profile_create。新しい Hermes プロファイルを作成します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_assignees": {
+      "label": "タスク担当者一覧を表示",
+      "description": "ツール hermes_assignees。devops を含む、Kanban 標準のタスク担当者レジストリ。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_workers": {
+      "label": "ワーカーの実行一覧を表示",
+      "description": "ツール hermes_workers。Kanban ワーカーによる実行の試行。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_worker": {
+      "label": "ワーカーの実行を表示",
+      "description": "ツール hermes_worker。実行識別子で指定した Kanban ワーカーの状態。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_sessions": {
+      "label": "セッション一覧を表示",
+      "description": "ツール hermes_sessions。メッセージ内容を含まない保存済みセッション。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_session": {
+      "label": "セッションを表示",
+      "description": "ツール hermes_session。メッセージやシステムプロンプトを含まない保存済みセッションの詳細。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_run": {
+      "label": "エージェントのタスクを実行",
+      "description": "ツール hermes_run。選択したエージェントでタスクを実行します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_status": {
+      "label": "エージェントのタスク状態を表示",
+      "description": "ツール hermes_status。この MCP が開始したタスクの状態。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_result": {
+      "label": "エージェントのタスク結果を表示",
+      "description": "ツール hermes_result。この MCP が開始したタスクの結果、エラー、使用量。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_continue": {
+      "label": "エージェントのタスクを継続",
+      "description": "ツール hermes_continue。保存済みセッションで完了済みタスクを継続します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_cancel": {
+      "label": "エージェントのタスクを停止",
+      "description": "ツール hermes_cancel。実行中のエージェントに中断を要求します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_kanban_boards": {
+      "label": "Kanban ボード一覧を表示",
+      "description": "ツール hermes_kanban_boards。ランタイム設定で許可された Kanban ボード。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_kanban_get": {
+      "label": "Kanban ボードのタスクを表示",
+      "description": "ツール hermes_kanban_get。ボードのタスクと統計情報。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_kanban_task": {
+      "label": "Kanban タスクを表示",
+      "description": "ツール hermes_kanban_task。タスクカードと実行の試行。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_kanban_create": {
+      "label": "Kanban タスクを作成",
+      "description": "ツール hermes_kanban_create。ボードにカードを作成します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_kanban_update": {
+      "label": "Kanban タスクを更新",
+      "description": "ツール hermes_kanban_update。カード、状態、担当者を更新します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_cron": {
+      "label": "スケジュール済みタスク一覧を表示",
+      "description": "ツール hermes_cron。スケジュール済みの Hermes タスクを一覧表示します。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_cron_job": {
+      "label": "スケジュール済みタスクを表示",
+      "description": "ツール hermes_cron_job。識別子で指定したスケジュール済みタスクの状態。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_cron_create": {
+      "label": "スケジュール済みタスクを作成",
+      "description": "ツール hermes_cron_create。スケジュール済みタスクを作成します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_cron_set_paused": {
+      "label": "スケジュール済みタスクを一時停止・再開",
+      "description": "ツール hermes_cron_set_paused。スケジュール済みタスクを一時停止または再開します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_workspaces": {
+      "label": "ワークスペース一覧を表示",
+      "description": "ツール hermes_workspaces。登録済みプロジェクトと検出されたリポジトリ。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_workspace": {
+      "label": "ワークスペースを表示",
+      "description": "ツール hermes_workspace。登録済みプロジェクトの詳細。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_events": {
+      "label": "タスクとセッションのイベントを表示",
+      "description": "ツール hermes_events。メッセージ内容を含まない保存済みの Kanban イベントとセッションイベント。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_memory_status": {
+      "label": "メモリの状態を表示",
+      "description": "ツール hermes_memory_status。メモリプロバイダーとその利用可否・状態。メモリの内容は含みません。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_settings_schema": {
+      "label": "設定の編集ルールを表示",
+      "description": "ツール hermes_settings_schema。対応する設定ソース、編集形式、制限。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_settings_get": {
+      "label": "設定を読み取る",
+      "description": "ツール hermes_settings_get。シークレットをマスクした設定、環境変数名、設定ファイル。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_settings_update": {
+      "label": "選択した設定を更新",
+      "description": "ツール hermes_settings_update。リビジョンチェック付きで、対応する設定フィールドを更新します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_settings_apply": {
+      "label": "設定の完全なスナップショットを適用",
+      "description": "ツール hermes_settings_apply。設定の完全なスナップショットを適用し、ロールバック用にバージョンを保存します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_settings_versions": {
+      "label": "設定バージョン一覧を表示",
+      "description": "ツール hermes_settings_versions。ディスクに保存されたバージョンと、その識別子および変更内容。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_settings_restore": {
+      "label": "設定バージョンを復元",
+      "description": "ツール hermes_settings_restore。保存済みバージョンを復元し、現在の設定を履歴に残します。変更権限が必要です。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_profile_delete": {
+      "label": "実行中でないプロファイルを削除",
+      "description": "hermes_profile_delete. 実行中でないプロファイルを削除. エージェントの実行と、タスク、プロファイル、スケジュール、設定の変更を許可します。オフにすると読み取り専用になります。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_cron_delete": {
+      "label": "一時停止中の定期タスクを削除",
+      "description": "hermes_cron_delete. 一時停止中の定期タスクを削除. エージェントの実行と、タスク、プロファイル、スケジュール、設定の変更を許可します。オフにすると読み取り専用になります。保存後に HTTP MCP を再起動してください。"
+    },
+    "tool_hermes_kanban_archive": {
+      "label": "実行中でない Kanban カードをアーカイブ",
+      "description": "hermes_kanban_archive. 実行中でない Kanban カードをアーカイブ. エージェントの実行と、タスク、プロファイル、スケジュール、設定の変更を許可します。オフにすると読み取り専用になります。保存後に HTTP MCP を再起動してください。"
+    }
+  }
+}

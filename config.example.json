@@ -1,0 +1,13 @@
+{
+  "hermes_repo": "/Users/you/.hermes/hermes-agent",
+  "token_file": "/Users/you/Library/Application Support/HermesHTTPMCP/mcp.key",
+  "profiles": ["*"],
+  "boards": ["default"],
+  "board_profile": "default",
+  "writes": true,
+  "auth_enabled": true,
+  "disabled_tools": [],
+  "host": "127.0.0.1",
+  "port": 18788,
+  "max_concurrent_runs": 2
+}

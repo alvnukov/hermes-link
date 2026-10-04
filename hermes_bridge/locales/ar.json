@@ -1,0 +1,173 @@
+{
+  "description": "استخدم Hermes من ChatGPT وعملاء MCP الآخرين. شغّل الوكلاء، وأدر المهام والجداول، وغيّر الإعدادات مع سجل للإصدارات وإمكانية الرجوع إليها.",
+  "fields": {
+    "writes": {
+      "label": "السماح بالتغييرات",
+      "description": "السماح بتشغيل الوكلاء وتغيير المهام وملفات التعريف والجداول والإعدادات. عطّل هذا الخيار للوصول للقراءة فقط. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "auth_enabled": {
+      "label": "اشتراط رمز وصول",
+      "description": "التحقق من رمز Bearer في طلبات HTTP. عطّل هذا الخيار للسماح بالوصول دون رمز؛ يظل الخادم يستمع على العنوان المحلي 127.0.0.1 فقط. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "auth_token": {
+      "label": "رمز الوصول",
+      "description": "أدخل رمزًا من 32–256 محرفًا: A–Z أو a–z أو 0–9 أو _ أو -. يحفظه Hermes ضمن القيم السرية لملف التعريف دون عرض قيمته. أعد تشغيل HTTP MCP بعد الحفظ واستخدم رمز Bearer نفسه في عميلك."
+    },
+    "tool_hermes_info": {
+      "label": "عرض معلومات Hermes",
+      "description": "أداة hermes_info. إصدار Hermes وحالة الخدمة. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_capabilities": {
+      "label": "عرض إمكانات MCP",
+      "description": "أداة hermes_capabilities. الميزات المتاحة وحدود الوصول. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_agents": {
+      "label": "عرض قائمة الوكلاء",
+      "description": "أداة hermes_agents. الوكلاء من ملفات تعريف Hermes. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_agent": {
+      "label": "عرض وكيل",
+      "description": "أداة hermes_agent. تفاصيل الوكيل حسب اسم ملف التعريف. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_profiles": {
+      "label": "عرض قائمة ملفات التعريف",
+      "description": "أداة hermes_profiles. ملفات تعريف Hermes على القرص. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_profile": {
+      "label": "عرض ملف تعريف",
+      "description": "أداة hermes_profile. بيانات ملف التعريف الوصفية دون محتوى التهيئة. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_profile_create": {
+      "label": "إنشاء ملفات تعريف",
+      "description": "أداة hermes_profile_create. إنشاء ملف تعريف Hermes جديد. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_assignees": {
+      "label": "عرض قائمة المكلّفين بالمهام",
+      "description": "أداة hermes_assignees. سجل المكلّفين بالمهام الأصلي في Kanban، بما فيه devops. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_workers": {
+      "label": "عرض قائمة عمليات تشغيل العاملين",
+      "description": "أداة hermes_workers. محاولات تنفيذ العاملين في Kanban. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_worker": {
+      "label": "عرض عملية تشغيل عامل",
+      "description": "أداة hermes_worker. حالة عامل Kanban حسب معرّف التشغيل. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_sessions": {
+      "label": "عرض قائمة الجلسات",
+      "description": "أداة hermes_sessions. الجلسات المحفوظة دون محتوى الرسائل. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_session": {
+      "label": "عرض جلسة",
+      "description": "أداة hermes_session. تفاصيل الجلسة المحفوظة دون الرسائل أو تعليمات النظام. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_run": {
+      "label": "تنفيذ مهام الوكلاء",
+      "description": "أداة hermes_run. تنفيذ مهمة باستخدام الوكيل المحدد. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_status": {
+      "label": "عرض حالة مهمة وكيل",
+      "description": "أداة hermes_status. حالة مهمة بدأها هذا MCP. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_result": {
+      "label": "عرض نتائج مهام الوكلاء",
+      "description": "أداة hermes_result. النتيجة والخطأ والاستخدام لمهمة بدأها هذا MCP. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_continue": {
+      "label": "متابعة مهام الوكلاء",
+      "description": "أداة hermes_continue. متابعة مهمة مكتملة في جلستها المحفوظة. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_cancel": {
+      "label": "إيقاف مهام الوكلاء",
+      "description": "أداة hermes_cancel. طلب مقاطعة وكيل قيد التشغيل. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_kanban_boards": {
+      "label": "عرض قائمة لوحات Kanban",
+      "description": "أداة hermes_kanban_boards. لوحات Kanban المسموح بها في إعدادات بيئة التشغيل. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_kanban_get": {
+      "label": "عرض مهام لوحة Kanban",
+      "description": "أداة hermes_kanban_get. مهام اللوحة وإحصاءاتها. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_kanban_task": {
+      "label": "عرض مهمة Kanban",
+      "description": "أداة hermes_kanban_task. بطاقة المهمة ومحاولات تنفيذها. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_kanban_create": {
+      "label": "إنشاء مهام Kanban",
+      "description": "أداة hermes_kanban_create. إنشاء بطاقة على لوحة. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_kanban_update": {
+      "label": "تحديث مهام Kanban",
+      "description": "أداة hermes_kanban_update. تحديث بطاقة وحالتها والمكلّف بها. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_cron": {
+      "label": "عرض المهام المجدولة",
+      "description": "أداة hermes_cron. عرض قائمة مهام Hermes المجدولة. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_cron_job": {
+      "label": "عرض مهمة مجدولة",
+      "description": "أداة hermes_cron_job. حالة المهمة المجدولة حسب المعرّف. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_cron_create": {
+      "label": "إنشاء مهام مجدولة",
+      "description": "أداة hermes_cron_create. إنشاء مهمة مجدولة. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_cron_set_paused": {
+      "label": "إيقاف المهام المجدولة مؤقتًا واستئنافها",
+      "description": "أداة hermes_cron_set_paused. إيقاف مهمة مجدولة مؤقتًا أو استئنافها. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_workspaces": {
+      "label": "عرض قائمة مساحات العمل",
+      "description": "أداة hermes_workspaces. المشاريع المسجلة والمستودعات المكتشفة. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_workspace": {
+      "label": "عرض مساحة عمل",
+      "description": "أداة hermes_workspace. تفاصيل مشروع مسجل. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_events": {
+      "label": "عرض أحداث المهام والجلسات",
+      "description": "أداة hermes_events. أحداث Kanban والجلسات المحفوظة دون محتوى الرسائل. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_memory_status": {
+      "label": "عرض حالة الذاكرة",
+      "description": "أداة hermes_memory_status. مزوّدو الذاكرة ومدى توفرهم وحالتهم، دون محتوى الذاكرة. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_settings_schema": {
+      "label": "عرض قواعد تحرير الإعدادات",
+      "description": "أداة hermes_settings_schema. مصادر الإعدادات المدعومة وصيغ التحرير والقيود. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_settings_get": {
+      "label": "قراءة الإعدادات",
+      "description": "أداة hermes_settings_get. التهيئة وأسماء متغيرات البيئة وملفات الإعدادات مع حجب القيم السرية. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_settings_update": {
+      "label": "تحديث إعدادات محددة",
+      "description": "أداة hermes_settings_update. تحديث حقول التهيئة المدعومة مع التحقق من معرّف المراجعة. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_settings_apply": {
+      "label": "تطبيق لقطة كاملة للإعدادات",
+      "description": "أداة hermes_settings_apply. تطبيق لقطة كاملة للإعدادات مع حفظ إصدار للرجوع إليه. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_settings_versions": {
+      "label": "عرض قائمة إصدارات الإعدادات",
+      "description": "أداة hermes_settings_versions. الإصدارات المحفوظة على القرص، بما فيها المعرّفات وتفاصيل التغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_settings_restore": {
+      "label": "استعادة إصدار من الإعدادات",
+      "description": "أداة hermes_settings_restore. استعادة إصدار محفوظ مع الاحتفاظ بالإعدادات الحالية في السجل. يتطلب إذن إجراء تغييرات. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_profile_delete": {
+      "label": "حذف الملفات الشخصية غير النشطة",
+      "description": "hermes_profile_delete. حذف الملفات الشخصية غير النشطة. السماح بتشغيل الوكلاء وتغيير المهام وملفات التعريف والجداول والإعدادات. عطّل هذا الخيار للوصول للقراءة فقط. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_cron_delete": {
+      "label": "حذف المهام المجدولة المتوقفة مؤقتًا",
+      "description": "hermes_cron_delete. حذف المهام المجدولة المتوقفة مؤقتًا. السماح بتشغيل الوكلاء وتغيير المهام وملفات التعريف والجداول والإعدادات. عطّل هذا الخيار للوصول للقراءة فقط. أعد تشغيل HTTP MCP بعد الحفظ."
+    },
+    "tool_hermes_kanban_archive": {
+      "label": "أرشفة بطاقات Kanban غير النشطة",
+      "description": "hermes_kanban_archive. أرشفة بطاقات Kanban غير النشطة. السماح بتشغيل الوكلاء وتغيير المهام وملفات التعريف والجداول والإعدادات. عطّل هذا الخيار للوصول للقراءة فقط. أعد تشغيل HTTP MCP بعد الحفظ."
+    }
+  }
+}

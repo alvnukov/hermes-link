@@ -1,0 +1,173 @@
+{
+  "description": "Utilisez Hermes depuis ChatGPT et d’autres clients MCP. Exécutez des agents, gérez des tâches et leur planification, et modifiez les paramètres avec un historique des versions et la possibilité de revenir en arrière.",
+  "fields": {
+    "writes": {
+      "label": "Autoriser les modifications",
+      "description": "Autoriser l’exécution des agents et les modifications des tâches, profils, planifications et paramètres. Désactivez cette option pour un accès en lecture seule. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "auth_enabled": {
+      "label": "Exiger un jeton d’accès",
+      "description": "Vérifier le jeton Bearer des requêtes HTTP. Désactivez cette option pour autoriser l’accès sans jeton ; le serveur reste à l’écoute uniquement sur l’adresse locale 127.0.0.1. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "auth_token": {
+      "label": "Jeton d’accès",
+      "description": "Saisissez un jeton de 32–256 caractères : A–Z, a–z, 0–9, _ ou -. Hermes le stocke dans les secrets du profil sans afficher sa valeur. Redémarrez HTTP MCP après l’enregistrement et utilisez le même jeton Bearer dans votre client."
+    },
+    "tool_hermes_info": {
+      "label": "Afficher les informations Hermes",
+      "description": "Outil hermes_info. Version de Hermes et état du service. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_capabilities": {
+      "label": "Afficher les fonctionnalités MCP",
+      "description": "Outil hermes_capabilities. Fonctionnalités disponibles et limites d’accès. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_agents": {
+      "label": "Lister les agents",
+      "description": "Outil hermes_agents. Agents issus des profils Hermes. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_agent": {
+      "label": "Afficher un agent",
+      "description": "Outil hermes_agent. Détails d’un agent à partir du nom du profil. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_profiles": {
+      "label": "Lister les profils",
+      "description": "Outil hermes_profiles. Profils Hermes stockés sur disque. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_profile": {
+      "label": "Afficher un profil",
+      "description": "Outil hermes_profile. Métadonnées du profil sans le contenu de la configuration. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_profile_create": {
+      "label": "Créer des profils",
+      "description": "Outil hermes_profile_create. Créer un nouveau profil Hermes. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_assignees": {
+      "label": "Lister les responsables de tâches",
+      "description": "Outil hermes_assignees. Registre natif des responsables de tâches Kanban, y compris devops. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_workers": {
+      "label": "Lister les exécutions des processus",
+      "description": "Outil hermes_workers. Tentatives d’exécution des processus de traitement Kanban. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_worker": {
+      "label": "Afficher une exécution de processus",
+      "description": "Outil hermes_worker. État d’un processus de traitement Kanban à partir de l’identifiant d’exécution. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_sessions": {
+      "label": "Lister les sessions",
+      "description": "Outil hermes_sessions. Sessions enregistrées sans le contenu des messages. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_session": {
+      "label": "Afficher une session",
+      "description": "Outil hermes_session. Détails d’une session enregistrée sans les messages ni l’instruction système. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_run": {
+      "label": "Exécuter des tâches avec un agent",
+      "description": "Outil hermes_run. Exécuter une tâche avec l’agent sélectionné. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_status": {
+      "label": "Afficher l’état d’une tâche d’agent",
+      "description": "Outil hermes_status. État d’une tâche lancée par ce MCP. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_result": {
+      "label": "Afficher les résultats d’une tâche d’agent",
+      "description": "Outil hermes_result. Résultat, erreur et consommation de ressources d’une tâche lancée par ce MCP. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_continue": {
+      "label": "Poursuivre des tâches d’agent",
+      "description": "Outil hermes_continue. Poursuivre une tâche terminée dans sa session enregistrée. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_cancel": {
+      "label": "Arrêter des tâches d’agent",
+      "description": "Outil hermes_cancel. Demander l’interruption d’un agent en cours d’exécution. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_kanban_boards": {
+      "label": "Lister les tableaux Kanban",
+      "description": "Outil hermes_kanban_boards. Tableaux Kanban autorisés par la configuration d’exécution. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_kanban_get": {
+      "label": "Afficher les tâches d’un tableau Kanban",
+      "description": "Outil hermes_kanban_get. Tâches et statistiques du tableau. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_kanban_task": {
+      "label": "Afficher une tâche Kanban",
+      "description": "Outil hermes_kanban_task. Fiche de tâche et tentatives d’exécution. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_kanban_create": {
+      "label": "Créer des tâches Kanban",
+      "description": "Outil hermes_kanban_create. Créer une fiche sur un tableau. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_kanban_update": {
+      "label": "Mettre à jour des tâches Kanban",
+      "description": "Outil hermes_kanban_update. Mettre à jour une fiche, son état et son responsable. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_cron": {
+      "label": "Afficher les tâches planifiées",
+      "description": "Outil hermes_cron. Lister les tâches Hermes planifiées. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_cron_job": {
+      "label": "Afficher une tâche planifiée",
+      "description": "Outil hermes_cron_job. État d’une tâche planifiée à partir de son identifiant. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_cron_create": {
+      "label": "Créer des tâches planifiées",
+      "description": "Outil hermes_cron_create. Créer une tâche planifiée. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_cron_set_paused": {
+      "label": "Suspendre et reprendre les tâches planifiées",
+      "description": "Outil hermes_cron_set_paused. Suspendre ou reprendre une tâche planifiée. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_workspaces": {
+      "label": "Lister les espaces de travail",
+      "description": "Outil hermes_workspaces. Projets enregistrés et dépôts détectés. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_workspace": {
+      "label": "Afficher un espace de travail",
+      "description": "Outil hermes_workspace. Détails d’un projet enregistré. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_events": {
+      "label": "Afficher les événements des tâches et sessions",
+      "description": "Outil hermes_events. Événements Kanban et de sessions enregistrés sans le contenu des messages. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_memory_status": {
+      "label": "Afficher l’état de la mémoire",
+      "description": "Outil hermes_memory_status. Fournisseurs de mémoire et informations sur leur disponibilité et leur état, sans le contenu de la mémoire. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_settings_schema": {
+      "label": "Afficher les règles de modification des paramètres",
+      "description": "Outil hermes_settings_schema. Sources de paramètres, formats de modification et restrictions pris en charge. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_settings_get": {
+      "label": "Lire les paramètres",
+      "description": "Outil hermes_settings_get. Configuration, noms des variables d’environnement et fichiers de paramètres avec les secrets masqués. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_settings_update": {
+      "label": "Mettre à jour les paramètres sélectionnés",
+      "description": "Outil hermes_settings_update. Mettre à jour les champs de configuration pris en charge avec vérification de la révision. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_settings_apply": {
+      "label": "Appliquer un instantané complet des paramètres",
+      "description": "Outil hermes_settings_apply. Appliquer un instantané complet des paramètres en enregistrant une version pour revenir en arrière. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_settings_versions": {
+      "label": "Lister les versions des paramètres",
+      "description": "Outil hermes_settings_versions. Versions enregistrées sur disque, avec leurs identifiants et les détails des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_settings_restore": {
+      "label": "Restaurer une version des paramètres",
+      "description": "Outil hermes_settings_restore. Restaurer une version enregistrée en conservant les paramètres actuels dans l’historique. Nécessite l’autorisation d’effectuer des modifications. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_profile_delete": {
+      "label": "Supprimer les profils inactifs",
+      "description": "hermes_profile_delete. Supprimer les profils inactifs. Autoriser l’exécution des agents et les modifications des tâches, profils, planifications et paramètres. Désactivez cette option pour un accès en lecture seule. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_cron_delete": {
+      "label": "Supprimer les tâches planifiées en pause",
+      "description": "hermes_cron_delete. Supprimer les tâches planifiées en pause. Autoriser l’exécution des agents et les modifications des tâches, profils, planifications et paramètres. Désactivez cette option pour un accès en lecture seule. Redémarrez HTTP MCP après l’enregistrement."
+    },
+    "tool_hermes_kanban_archive": {
+      "label": "Archiver les cartes Kanban inactives",
+      "description": "hermes_kanban_archive. Archiver les cartes Kanban inactives. Autoriser l’exécution des agents et les modifications des tâches, profils, planifications et paramètres. Désactivez cette option pour un accès en lecture seule. Redémarrez HTTP MCP après l’enregistrement."
+    }
+  }
+}

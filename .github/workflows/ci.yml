@@ -1,0 +1,59 @@
+name: Python quality
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.13", "3.14"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          version: "0.12.1"
+          python-version: ${{ matrix.python }}
+      - name: Prepare isolated native integration source
+        shell: bash
+        run: |
+          native_source="$RUNNER_TEMP/hermes-test-source"
+          git init "$native_source"
+          git -C "$native_source" remote add origin https://github.com/NousResearch/hermes-agent.git
+          git -C "$native_source" fetch --depth=1 origin 7817bf522af3caf54b30ae59f16157469d7638fc
+          git -C "$native_source" checkout --detach FETCH_HEAD
+          echo "TEST_HERMES_REPO=$native_source" >> "$GITHUB_ENV"
+          uv sync --locked --group integration
+          ln -s "$GITHUB_WORKSPACE/.venv" "$native_source/venv"
+      - name: Lint, format and strict types
+        run: |
+          uv run --no-sync ruff check .
+          uv run --no-sync ruff format --check .
+          uv run --no-sync mypy
+      - name: Security
+        run: |
+          uv run --no-sync bandit -c pyproject.toml -r hermes_bridge scripts
+          uv export --locked --no-dev --no-emit-project -o "$RUNNER_TEMP/runtime-requirements.txt" >/dev/null
+          uv run --no-sync pip-audit --disable-pip --require-hashes -r "$RUNNER_TEMP/runtime-requirements.txt"
+      - name: Tests and branch coverage
+        run: |
+          uv run --no-sync coverage run -m pytest
+          uv run --no-sync coverage report
+          uv run --no-sync coverage xml
+      - name: Build typed distributions
+        run: uv build
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: quality-${{ matrix.os }}-${{ matrix.python }}
+          path: |
+            coverage.xml
+            dist/*
