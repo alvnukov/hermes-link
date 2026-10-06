@@ -11,6 +11,40 @@ from tests.test_settings import fixture
 
 
 class SettingsDefaultsTests(unittest.IsolatedAsyncioTestCase):
+    async def test_authored_empty_section_does_not_pin_its_inherited_children(self) -> None:
+        with fixture("model: original\nkanban: {}\n") as (settings, _home):
+            dispatcher = importlib.import_module("hermes_cli.kanban_db_dispatch")
+            self.assertTrue(dispatcher._profile_exists_fn()("default"))
+            before = settings.get("default")
+            after = settings.apply("default", object_json(before["config"]), None, str(before["revision"]))
+            raw = object_json(after["config_overrides"])
+            self.assertEqual(raw["kanban"], {})
+            self.assertTrue(dispatcher._profile_exists_fn()("default"))
+
+    async def test_existing_explicit_empty_default_map_remains_authored(self) -> None:
+        with fixture("providers: {}\n") as (settings, _home):
+            before = settings.get("default")
+            after = settings.apply("default", object_json(before["config"]), None, str(before["revision"]))
+            self.assertIn("providers", object_json(after["config_overrides"]))
+
+    async def test_default_opt_in_can_pin_a_new_empty_default_map(self) -> None:
+        with fixture("") as (settings, _home):
+            before = settings.get("default")
+            after = settings.apply(
+                "default", {"providers": {}}, None, str(before["revision"]), persist_defaults=True
+            )
+            self.assertIn("providers", object_json(after["config_overrides"]))
+
+    async def test_empty_config_snapshot_does_not_materialize_canonical_defaults(self) -> None:
+        with fixture("") as (settings, _home):
+            before = settings.get("default")
+            config = object_json(before["config"])
+            config["memory"] = {**object_json(config["memory"]), "user_char_limit": 1376}
+            after = settings.apply("default", config, None, str(before["revision"]))
+            raw = object_json(after["config_overrides"])
+            self.assertEqual(set(raw) - {"_config_version"}, {"memory"})
+            self.assertEqual(raw["memory"], {"user_char_limit": 1376})
+
     async def test_normalized_authored_defaults_survive_snapshot_apply(self) -> None:
         with fixture("model: original\nmax_turns: null\n") as (settings, _home):
             before = settings.get("default")

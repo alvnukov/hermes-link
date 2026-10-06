@@ -59,6 +59,40 @@ def _extension_paths(config: Object, defaults: Object, path: tuple[str, ...] = (
     return paths
 
 
+def _authored_paths(config: Object, path: tuple[str, ...] = ()) -> set[tuple[str, ...]]:
+    """Record explicit leaves and empty maps, which can also pin a native default."""
+    paths: set[tuple[str, ...]] = set()
+    for key, value in config.items():
+        child = (*path, key)
+        if isinstance(value, dict) and value:
+            paths.update(_authored_paths(value, child))
+        else:
+            paths.add(child)
+    return paths
+
+
+def _path_value(config: Object, path: tuple[str, ...]) -> object:
+    value: object = config
+    for key in path:
+        if not isinstance(value, dict) or key not in value:
+            return _MISSING
+        value = value[key]
+    return value
+
+
+def _restore_empty_maps(compact: Object, desired: Object, authored: set[tuple[str, ...]]) -> None:
+    """Retain authored containers after their inherited children have been stripped."""
+    for path in authored:
+        if not isinstance(_path_value(desired, path), dict) or _path_value(compact, path) is not _MISSING:
+            continue
+        parent = compact
+        for key in path[:-1]:
+            child = object_json(parent.get(key, {}))
+            parent[key] = child
+            parent = child
+        parent[path[-1]] = {}
+
+
 class Settings:
     """Read, validate, publish, and restore profile settings through native writers."""
 
@@ -391,11 +425,19 @@ class Settings:
             try:
                 # The staged raw file preserves authored defaults; a get() snapshot must not
                 # turn inherited values into overrides (notably the fail-closed dispatch allowlist).
+                defaults = self._normal(object_json(self.module.DEFAULT_CONFIG))
+                extensions = _extension_paths(desired, defaults)
+                leaves = {path for path in preserve_keys if not isinstance(_path_value(desired, path), dict)}
+                # Native stripping compares the unnormalized schema; aliases such as scalar
+                # model defaults must first be compared in the same canonical form as desired.
+                compact = self.module._strip_default_values(  # noqa: SLF001 - Native strip with canonical schema.
+                    desired, defaults, preserve_keys=leaves | extensions
+                )
+                _restore_empty_maps(compact, desired, preserve_keys)
                 self.module.save_config(
-                    desired,
+                    compact,
                     strip_defaults=True,
-                    preserve_keys=preserve_keys
-                    | _extension_paths(desired, object_json(self.module.DEFAULT_CONFIG)),
+                    preserve_keys=preserve_keys | extensions,
                     merge_existing=False,
                 )
                 if lines is not None:
@@ -426,7 +468,7 @@ class Settings:
         self._require_revision(before, expected_revision)
         previous = self._read_config(home / "config.yaml")
         # Aliases in the staged raw file may have different paths from the canonical desired tree.
-        preserve_keys |= set(self.module._explicit_config_paths(previous))  # noqa: SLF001 - Native author paths.
+        preserve_keys |= _authored_paths(previous)
         old_env = object_json(self.module.load_env())
         effective = self._effective(previous)
         desired = self._normal(object_json(self._resolve(object_json(config), effective)))
@@ -469,13 +511,7 @@ class Settings:
         """Replace the native tree after durable snapshots and an optimistic revision check."""
         self.native.config.require_writes()
         with _LOCK, self.native.home_scope(profile) as home, self.config_lock:
-            # Native save_config accepts paths but exposes no public path collector. Reuse
-            # its collector so explicit opt-in has exactly the native writer's tree semantics.
-            preserve_keys = (
-                set(self.module._explicit_config_paths(self._normal(config)))  # noqa: SLF001 - Native author paths.
-                if persist_defaults
-                else set()
-            )
+            preserve_keys = _authored_paths(self._normal(config)) if persist_defaults else set()
             return self._apply(profile, home, config, env, expected_revision, preserve_keys=preserve_keys)
 
     def update(self, profile: str, changes: Object, expected_revision: str) -> Object:
