@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Keep inherited native defaults out of settings snapshot writes, preserving
+  explicit overrides, normalized aliases and extension nulls. New default-valued
+  overrides require `persist_defaults=true`; convenience updates remain explicit.
+
 ## 0.8.0
 
 - Export persisted Kanban attempt summaries, worker-session links and sanitized

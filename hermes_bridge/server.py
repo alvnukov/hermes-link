@@ -238,13 +238,20 @@ class Surface:
         expected_revision: str,
         env: dict[str, object] | None = None,
         profile: str = "default",
+        *,
+        persist_defaults: bool = False,
     ) -> Object:
         """Apply the full native config and optional persisted env.
 
-        Preserve secret markers; creates disk versions before/after.
+        Preserve secret markers and authored overrides; creates disk versions before/after.
+        Inherited defaults stay unset unless persist_defaults is explicitly enabled.
         """
         return self.settings.apply(
-            profile, object_json(config), object_json(env) if env is not None else None, expected_revision
+            profile,
+            object_json(config),
+            object_json(env) if env is not None else None,
+            expected_revision,
+            persist_defaults=persist_defaults,
         )
 
     def hermes_settings_versions(self, profile: str = "default", limit: int = 50) -> Object:

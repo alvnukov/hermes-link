@@ -44,6 +44,21 @@ _CREDENTIAL_NAME = re.compile(
 )
 
 
+def _extension_paths(config: Object, defaults: Object, path: tuple[str, ...] = ()) -> set[tuple[str, ...]]:
+    """Keep authored extension keys, including nulls that the native stripper treats as defaults."""
+    paths: set[tuple[str, ...]] = set()
+    for key, value in config.items():
+        child = (*path, key)
+        if key not in defaults:
+            paths.add(child)
+        elif isinstance(value, dict):
+            if isinstance(defaults[key], dict):
+                paths.update(_extension_paths(value, object_json(defaults[key]), child))
+            else:
+                paths.add(child)
+    return paths
+
+
 class Settings:
     """Read, validate, publish, and restore profile settings through native writers."""
 
@@ -94,6 +109,7 @@ class Settings:
             "secret_preserve_marker": dict(PRESERVE),
             "update": "Get revision, then submit dotted convenience changes and expected_revision.",
             "apply": "Replace config with the complete desired tree. Omitted keys are removed. "
+            "Inherited defaults are omitted unless persist_defaults=true; existing explicit values stay. "
             "Supply env to replace persisted environment assignments; null leaves .env unchanged.",
             "versions": "Private configuration and environment versions persist under native backups/config.",
         }
@@ -359,7 +375,12 @@ class Settings:
             ) from exc
 
     def _stage(
-        self, history: SettingsHistory, before: State, desired: Object, lines: list[str] | None
+        self,
+        history: SettingsHistory,
+        before: State,
+        desired: Object,
+        lines: list[str] | None,
+        preserve_keys: set[tuple[str, ...]],
     ) -> tuple[State, str]:
         # Both private versions must be durable before either live file changes.
         with tempfile.TemporaryDirectory(prefix=".bridge-stage-", dir=history.root) as temporary:
@@ -368,7 +389,15 @@ class Settings:
                 self.utils.atomic_write_bytes(stage / "config.yaml", before.config, mode=0o600)
             token = self.native.constants.set_hermes_home_override(stage)
             try:
-                self.module.save_config(desired, strip_defaults=False, merge_existing=False)
+                # The staged raw file preserves authored defaults; a get() snapshot must not
+                # turn inherited values into overrides (notably the fail-closed dispatch allowlist).
+                self.module.save_config(
+                    desired,
+                    strip_defaults=True,
+                    preserve_keys=preserve_keys
+                    | _extension_paths(desired, object_json(self.module.DEFAULT_CONFIG)),
+                    merge_existing=False,
+                )
                 if lines is not None:
                     writer = self.module._write_env_lines  # noqa: SLF001 - Native full .env writer.
                     writer(stage / ".env", lines, preserve_mode=False)
@@ -384,11 +413,20 @@ class Settings:
             return after, history.capture(stage, after, "apply")
 
     def _apply(
-        self, profile: str, home: Path, config: Object, env: Object | None, expected_revision: str
+        self,
+        profile: str,
+        home: Path,
+        config: Object,
+        env: Object | None,
+        expected_revision: str,
+        *,
+        preserve_keys: set[tuple[str, ...]],
     ) -> Object:
         before = read_state(home)
         self._require_revision(before, expected_revision)
         previous = self._read_config(home / "config.yaml")
+        # Aliases in the staged raw file may have different paths from the canonical desired tree.
+        preserve_keys |= set(self.module._explicit_config_paths(previous))  # noqa: SLF001 - Native author paths.
         old_env = object_json(self.module.load_env())
         effective = self._effective(previous)
         desired = self._normal(object_json(self._resolve(object_json(config), effective)))
@@ -400,7 +438,7 @@ class Settings:
         try:
             history.prepare()
             before_id = history.capture(home, before, "before_apply")
-            after, after_id = self._stage(history, before, desired, lines)
+            after, after_id = self._stage(history, before, desired, lines, preserve_keys)
             self._require_revision(read_state(home), expected_revision)
             self._publish_guarded(home, after, before, before_id)
         except OSError as exc:
@@ -419,11 +457,26 @@ class Settings:
         )
         return result
 
-    def apply(self, profile: str, config: Object, env: Object | None, expected_revision: str) -> Object:
+    def apply(
+        self,
+        profile: str,
+        config: Object,
+        env: Object | None,
+        expected_revision: str,
+        *,
+        persist_defaults: bool = False,
+    ) -> Object:
         """Replace the native tree after durable snapshots and an optimistic revision check."""
         self.native.config.require_writes()
         with _LOCK, self.native.home_scope(profile) as home, self.config_lock:
-            return self._apply(profile, home, config, env, expected_revision)
+            # Native save_config accepts paths but exposes no public path collector. Reuse
+            # its collector so explicit opt-in has exactly the native writer's tree semantics.
+            preserve_keys = (
+                set(self.module._explicit_config_paths(self._normal(config)))  # noqa: SLF001 - Native author paths.
+                if persist_defaults
+                else set()
+            )
+            return self._apply(profile, home, config, env, expected_revision, preserve_keys=preserve_keys)
 
     def update(self, profile: str, changes: Object, expected_revision: str) -> Object:
         """Apply supported dotted changes while retaining unrelated native configuration."""
@@ -441,7 +494,14 @@ class Settings:
                         msg = "invalid_setting"
                         raise BridgeError(msg, "Conflicting configuration keys")
                     section[parts[1]] = json_value(value)
-            return self._apply(profile, home, desired, None, expected_revision)
+            return self._apply(
+                profile,
+                home,
+                desired,
+                None,
+                expected_revision,
+                preserve_keys={tuple(key.split(".")) for key in changes},
+            )
 
     def versions(self, profile: str, limit: int = 50) -> Object:
         """List verified private version metadata without revealing saved setting values."""
